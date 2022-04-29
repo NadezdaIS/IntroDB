@@ -77,7 +77,8 @@ public class StudentController {
         }
     }
 
-    public static boolean addStudentScores () {
+
+    public static boolean addStudentScores() {
 
         System.out.print("Enter the id of the student: ");
         int id = scanner.nextInt();
@@ -100,12 +101,11 @@ public class StudentController {
     }
 
 
-    public static boolean deleteStudent () {
+    public static boolean deleteStudent() {
         System.out.print("Enter the id of the student: ");
         int id = scanner.nextInt();
-
         try {
-            ps = getConnection().prepareStatement( "DELETE FROM students WHERE id=" + id);
+            ps = getConnection().prepareStatement("DELETE FROM students WHERE id=" + id);
             ps.execute();
             return true;
         } catch (SQLException e) {
@@ -115,13 +115,63 @@ public class StudentController {
     }
 
 
-    public static boolean deleteScore () {
+    public static boolean deleteScore() {
         System.out.print("Enter the id of the student: ");
         int id = scanner.nextInt();
 
         try {
-            ps = getConnection().prepareStatement( "DELETE FROM scores WHERE studentid=" + id);
+            ps = getConnection().prepareStatement("DELETE FROM scores WHERE studentid=" + id);
             ps.execute();
+            return true;
+        } catch (SQLException e) {
+            System.out.println("Database Error");
+            return false;
+        }
+    }
+
+    public static boolean editScore() {
+        System.out.println("Enter the id of the student: ");
+        int id = scanner.nextInt();
+        System.out.println("Choose the subject: ");
+        System.out.println("For mathematics choose 1");
+        System.out.println("For physics choose 2");
+        System.out.println("For chemistry  choose 3");
+        int subject = scanner.nextInt();
+        System.out.println("Enter new score:");
+        int newScore = scanner.nextInt();
+        try {
+            if (subject == 1) {
+                ps = getConnection().prepareStatement("UPDATE scores SET mathematics ='" + newScore + "' WHERE studentid =" + id);
+                ps.execute();
+            }
+            if (subject == 2) {
+                ps = getConnection().prepareStatement("UPDATE scores SET physics ='" + newScore + "' WHERE studentid =" + id);
+                ps.execute();
+            }
+            if (subject == 3) {
+                ps = getConnection().prepareStatement("UPDATE scores SET chemistry ='" + newScore + "' WHERE studentid =" + id);
+                ps.execute();
+            }
+            return true;
+        } catch (SQLException e) {
+            System.out.println("Database Error");
+            return false;
+        }
+    }
+
+
+    public static boolean deleteScore(int id) {
+        try {
+            ps = getConnection().prepareStatement("DELETE FROM students WHERE id=" + id);
+            ps.execute();
+        } catch (SQLException e) {
+            System.out.println("Database Error");
+            return false;
+        }
+        try {
+            ps = getConnection().prepareStatement("DELETE FROM scores WHERE studentid=" + id);
+            ps.execute();
+
             return true;
         } catch (SQLException e) {
             System.out.println("Database Error");

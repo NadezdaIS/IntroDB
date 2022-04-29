@@ -1,8 +1,12 @@
 package com.company.menu;
 
 import com.company.controllers.StudentController;
+import com.company.objects.Student;
 
 import java.util.Scanner;
+
+import static com.company.controllers.StudentController.deleteScore;
+import static com.company.controllers.StudentController.getStudentById;
 
 public class StudentMenu {
 
@@ -15,6 +19,8 @@ public class StudentMenu {
         System.out.println("3. Add scores to student");
         System.out.println("4. Delete a student by id");
         System.out.println("5. Delete scores of a student by id");
+        System.out.println("6. Change score for a subject of choice");
+        System.out.println("7. Delete both student and scores");
 
 
         System.out.print("Select an option: ");
@@ -31,10 +37,18 @@ public class StudentMenu {
                 System.out.println(StudentController.addStudentScores() ? "Successfully added scores" : "Scores not added");
                 break;
             case 4:
-                System.out.println(StudentController.deleteStudent() ? "Successfully deleted" : "Student not deleted");
+                System.out.println(StudentController.deleteStudent() ? "Successfully deleted" : "Not deleted");
                 break;
             case 5:
                 System.out.println(StudentController.deleteScore() ? "Successfully deleted" : "Not deleted");
+                break;
+            case 6:
+                System.out.println(StudentController.editScore() ? "Successfully updated" : "Not updated");
+                break;
+            case 7:
+                System.out.println("Enter student's id:");
+                int id = scanner.nextInt();
+                System.out.println(StudentController.deleteScore(id) ? "Successfully deleted" : "Not deleted");
                 break;
             default:
                 System.out.println("Invalid option. Try again");
