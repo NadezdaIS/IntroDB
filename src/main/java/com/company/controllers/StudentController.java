@@ -160,25 +160,25 @@ public class StudentController {
     }
 
 
-    public static boolean deleteScore(int id) {
-        try {
-            ps = getConnection().prepareStatement("DELETE FROM students WHERE id=" + id);
-            ps.execute();
-        } catch (SQLException e) {
-            System.out.println("Database Error");
-            return false;
-        }
-        try {
-            ps = getConnection().prepareStatement("DELETE FROM scores WHERE studentid=" + id);
-            ps.execute();
-
-            return true;
-        } catch (SQLException e) {
-            System.out.println("Database Error");
-            return false;
-        }
-    }
-
+//
+//public static boolean deleteScore(int id) {
+//        try {
+//            ps = getConnection().prepareStatement("DELETE FROM students WHERE id=" + id);
+//            ps.execute();
+//        } catch (SQLException e) {
+//            System.out.println("Database Error");
+//            return false;
+//        }
+//        try {
+//            ps = getConnection().prepareStatement("DELETE FROM scores WHERE studentid=" + id);
+//            ps.execute();
+//
+//            return true;
+//        } catch (SQLException e) {
+//            System.out.println("Database Error");
+//            return false;
+//        }
+//    }
 
 }
 
