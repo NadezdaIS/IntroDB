@@ -105,6 +105,9 @@ public class StudentController {
         System.out.print("Enter the id of the student: ");
         int id = scanner.nextInt();
         try {
+            // Because of the relationship with the scores table, we have to first delete the
+            // students score before we delete the student's data.
+            deleteScore(id);
             ps = getConnection().prepareStatement("DELETE FROM students WHERE id=" + id);
             ps.execute();
             return true;
@@ -179,6 +182,16 @@ public class StudentController {
 //            return false;
 //        }
 //    }
+
+    public static void deleteScore(int id) {
+        try {
+            ps = getConnection().prepareStatement("DELETE FROM scores WHERE studentid=" + id);
+            ps.execute();
+            System.out.println("Succesfully deleted student scores");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
 }
 

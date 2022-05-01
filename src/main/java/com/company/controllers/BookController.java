@@ -1,6 +1,8 @@
 package com.company.controllers;
 
 import com.company.books.Book;
+import com.company.objects.Author;
+import com.company.objects.Student;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -98,5 +100,78 @@ public class BookController {
             return false;
         }
     }
+
+
+    public static boolean addAuthor() {
+
+        System.out.print("Enter the id of the book: ");
+        int id = scanner.nextInt();
+        System.out.print("Enter name: ");
+        String name = scanner.next();
+        System.out.print("Enter age: ");
+        int age = scanner.nextInt();
+
+
+        try {
+            ps = getConnection().prepareStatement("INSERT INTO authors(bookid, name, age) VALUES("
+                    + id + ",'" + name + "'," + age + ")");
+            ps.execute();
+            return true;
+        } catch (SQLException e) {
+            System.out.println("Database Error");
+            return false;
+        }
+    }
+
+    public static Author getAuthorById() {
+        System.out.print("Enter the id of the author: ");
+        int id = scanner.nextInt();
+
+        try {
+
+            ps = getConnection().prepareStatement("SELECT * FROM authors WHERE id=" + id);
+            rs = ps.executeQuery();
+
+            int authorId, age;
+            String name;
+
+            Author author = new Author();
+
+            while (rs.next()) {
+                authorId = rs.getInt("id");
+                name = rs.getString("name");
+                age = rs.getInt("age");
+                author.setName(name);
+                author.setId(authorId);
+                author.setAge(age);
+            }
+
+            return author;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+
+    public static boolean deleteAuthor() {
+        System.out.print("Enter the id of the author: ");
+        int id = scanner.nextInt();
+        try {
+            ps = getConnection().prepareStatement("DELETE FROM authors WHERE id=" + id);
+            ps.execute();
+            return true;
+        } catch (SQLException e) {
+            System.out.println("Database Error");
+            return false;
+        }
+    }
+
+
+
+
+
+
 
 }

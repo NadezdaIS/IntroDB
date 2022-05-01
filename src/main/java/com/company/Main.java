@@ -3,6 +3,7 @@ package com.company;
 import com.company.controllers.StudentController;
 import com.company.login.Auth;
 import com.company.menu.StudentMenu;
+import com.company.menu.BookMenu;
 
 import java.sql.SQLOutput;
 
@@ -24,14 +25,14 @@ public class Main {
 //        DbConnection.getConnection (); // checking connection to database
 
 //        StudentMenu.menu();
-//        BookMenu.menu();
+        BookMenu.menu();
 //        Auth.addUser();
 //        Auth.deleteUser();
-        if (Auth.login()){
-            StudentMenu.menu();
-        } else {
-            System.out.println("Invalid login");
-        }
+//        if (Auth.login()){
+//            StudentMenu.menu();
+//        } else {
+//            System.out.println("Invalid login");
+//        }
 
 
 

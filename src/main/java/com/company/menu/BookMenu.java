@@ -15,6 +15,9 @@ public class BookMenu {
         System.out.println("2. Get book by id");
         System.out.println("3. Delete book by id");
         System.out.println("4. Edit book's name by id");
+        System.out.println("5. Add author");
+        System.out.println("6. Get author by id");
+        System.out.println("7. Delete author");
 
 
         System.out.print("Select an option: ");
@@ -33,6 +36,16 @@ public class BookMenu {
             case 4:
                 System.out.println(BookController.editBookName() ? "Successfully edited name" : "Name not edited");
                 break;
+            case 5:
+                System.out.println(BookController.addAuthor() ? "Successfully added" : "Bot added");
+                break;
+            case 6:
+                System.out.println(BookController.getAuthorById().getName());
+                break;
+            case 7:
+                System.out.println(BookController.deleteAuthor() ? "Successfully deleted" : "Not deleted");
+                break;
+
             default:
                 System.out.println("Invalid option. Try again");
                 menu();
