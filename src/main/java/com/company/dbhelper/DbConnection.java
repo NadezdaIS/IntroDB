@@ -14,7 +14,7 @@ public class DbConnection {
         Connection connection = null;
 
         try {
-            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/students", "postgres", "kalja5");
+            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/students", "postgres", "roots");
 //            if (connection != null) System.out.println("Connection Successful");
         } catch (SQLException e) {
             System.out.println("There was a problem connecting to the database");
